@@ -1,0 +1,7 @@
+model: facebook_opt_6.7b
+is_peft: True
+validation: False
+train:
+  batch_size: 1
+  iter: 3
+  seq_len: 1024

@@ -1,0 +1,47 @@
+model: /data/dataset/llama/llama-2-7b-chat-hf/
+dataset_name: MetaMathQA
+filename: MetaMathQA-40K.json
+is_peft: True
+validation: False
+ac: None
+min_param: 1 # by default using smallest granularity
+offload_param: False
+with_data: False
+shard_group_size: -1
+dual_model:
+  num_layer: -1
+  batch_size: -1
+  peak_ac: True
+train:
+  batch_size: 4
+  iter: 3
+  seq_len: 1024
+  epoch: 2
+  grad_accumulation_steps: 4
+  save_interval: -1
+intra_weight:
+  replica_rate: 0
+  replica_strategy: homo
+inter_weight:
+  replica_layer_id: -1
+time_dim:
+  layer_id: -1
+  group_scaler: 1
+profile:
+  memory: False
+  compute: False
+# for non-uniform activation checkpoint
+group_size: 1
+peak_num_groups: 0
+checkpoint:
+  non_offload_num: 0
+pipeline:
+  use_pipeline: False
+  chunks: 0
+tp: False
+repeated: False
+lr: 2e-5
+rank: -1
+world_size: -1
+debug:
+  skip_comm: False
