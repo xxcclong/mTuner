@@ -1,5 +1,15 @@
 ## MTuner-Megatron
 
+### Env
+
+```
+# use original env
+source ~/.venv/fthub/bin/activate
+# or build a new env
+python -m ~/.venv/finetune
+source ~/.venv/finetune/bin/activate
+pip install -r requirements.txt
+```
 
 ### Exp1: overall results (Figure 8)
 
