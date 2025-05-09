@@ -1,0 +1,825 @@
+/public/home/hkz/repo/hkz/megatron
+gpunode72 1 0 gpunode72 12215 8
+MODEL_SIZE: 70 HIDDEN_SIZE: 8192 NUM_HEAD: 64 NUM_QUERY_GROUP: 8 NUM_LAYERS: 20 FFN_HIDDEN_SIZE: 28672 NORM_EPS: 1e-5
+--num-layers 20 --hidden-size 8192 --num-attention-heads 64 --num-query-groups 8 --seq-length 2048 --max-position-embeddings 2048 --ffn-hidden-size 28672 --use-flash-attn --tp-comm-overlap --bf16
+--micro-batch-size 1 --global-batch-size 1 --train-iters 5 --weight-decay 0.1 --adam-beta1 0.9 --adam-beta2 0.95 --init-method-std 0.006 --clip-grad 1.0 --lr 6.0e-5 --lr-decay-style cosine --min-lr 6.0e-6 --lr-warmup-fraction 0 --lr-decay-iters 430000
+--tensor-model-parallel-size 8 --pipeline-model-parallel-size 1 --sequence-parallel
+--data-path /public/home/hkz/repo/hkz/data/zbdata/zb_sample_dataset/dataset/c4_text_document --split 949,50,1 --vocab-file /public/home/hkz/repo/hkz/data//vocab.json --merge-file /public/home/hkz/repo/hkz/data//merges.txt
+--log-interval 1 --save-interval 10000 --eval-interval 1000 --eval-iters 0 --tensorboard-dir logs/05-06-22-53
+--transformer-impl transformer_engine --timing-log-level 2 --profile-step-start 3 --profile-step-end 4 --use-pytorch-profiler --profile-ranks 0 1 2 3 4 5 6 7 --no-overlap-p2p-communication
+--nproc_per_node 8 --nnodes 1 --node_rank 0 --master_addr gpunode72 --master_port 12215
+W0506 22:53:39.204000 2674445 torch/distributed/run.py:793] 
+W0506 22:53:39.204000 2674445 torch/distributed/run.py:793] *****************************************
+W0506 22:53:39.204000 2674445 torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0506 22:53:39.204000 2674445 torch/distributed/run.py:793] *****************************************
+[WARNING  | root               ]: Supported flash-attn versions are >= 2.1.1, <= 2.6.3. Found flash-attn 2.7.2.post1.
+[WARNING  | root               ]: Supported flash-attn versions are >= 2.1.1, <= 2.6.3. Found flash-attn 2.7.2.post1.
+[WARNING  | root               ]: Supported flash-attn versions are >= 2.1.1, <= 2.6.3. Found flash-attn 2.7.2.post1.
+[WARNING  | root               ]: Supported flash-attn versions are >= 2.1.1, <= 2.6.3. Found flash-attn 2.7.2.post1.
+[WARNING  | root               ]: Supported flash-attn versions are >= 2.1.1, <= 2.6.3. Found flash-attn 2.7.2.post1.
+[WARNING  | root               ]: Supported flash-attn versions are >= 2.1.1, <= 2.6.3. Found flash-attn 2.7.2.post1.
+[WARNING  | root               ]: Supported flash-attn versions are >= 2.1.1, <= 2.6.3. Found flash-attn 2.7.2.post1.
+[WARNING  | root               ]: Supported flash-attn versions are >= 2.1.1, <= 2.6.3. Found flash-attn 2.7.2.post1.
+using world size: 8, data-parallel size: 1, context-parallel size: 1, tensor-model-parallel size: 8, encoder-tensor-model-parallel size: 0, pipeline-model-parallel size: 1, encoder-pipeline-model-parallel size: 0
+accumulate and all-reduce gradients in fp32 for bfloat16 data type.
+using torch.bfloat16 for parameters ...
+------------------------ arguments ------------------------
+  accumulate_allreduce_grads_in_fp32 .............. True
+  adam_beta1 ...................................... 0.9
+  adam_beta2 ...................................... 0.95
+  adam_eps ........................................ 1e-08
+  add_bias_linear ................................. True
+  add_position_embedding .......................... True
+  add_qkv_bias .................................... False
+  adlr_autoresume ................................. False
+  adlr_autoresume_interval ........................ 1000
+  align_grad_reduce ............................... True
+  align_param_gather .............................. False
+  app_tag_run_name ................................ None
+  app_tag_run_version ............................. 0.0.0
+  apply_layernorm_1p .............................. False
+  apply_query_key_layer_scaling ................... False
+  apply_residual_connection_post_layernorm ........ False
+  apply_rope_fusion ............................... False
+  async_save ...................................... None
+  async_tensor_model_parallel_allreduce ........... False
+  attention_dropout ............................... 0.1
+  attention_softmax_in_fp32 ....................... False
+  auto_detect_ckpt_format ......................... False
+  barrier_with_L1_time ............................ True
+  bert_binary_head ................................ True
+  bert_embedder_type .............................. megatron
+  bert_load ....................................... None
+  bf16 ............................................ True
+  bias_dropout_fusion ............................. True
+  bias_gelu_fusion ................................ True
+  bias_swiglu_fusion .............................. True
+  biencoder_projection_dim ........................ 0
+  biencoder_shared_query_context_model ............ False
+  block_data_path ................................. None
+  calculate_per_token_loss ........................ False
+  check_for_nan_in_loss_and_grad .................. True
+  check_weight_hash_across_dp_replicas_interval ... None
+  ckpt_assume_constant_structure .................. False
+  ckpt_convert_format ............................. None
+  ckpt_convert_save ............................... None
+  ckpt_convert_update_legacy_dist_opt_format ...... False
+  ckpt_format ..................................... torch_dist
+  ckpt_fully_parallel_load ........................ False
+  ckpt_fully_parallel_save ........................ True
+  ckpt_fully_parallel_save_deprecated ............. False
+  ckpt_step ....................................... None
+  classes_fraction ................................ 1.0
+  clip_grad ....................................... 1.0
+  clone_scatter_output_in_embedding ............... True
+  config_logger_dir ............................... 
+  consumed_train_samples .......................... 0
+  consumed_valid_samples .......................... 0
+  context_parallel_size ........................... 1
+  create_attention_mask_in_dataloader ............. True
+  cross_entropy_loss_fusion ....................... False
+  data_cache_path ................................. None
+  data_parallel_random_init ....................... False
+  data_parallel_size .............................. 1
+  data_path ....................................... ['/public/home/hkz/repo/hkz/data/zbdata/zb_sample_dataset/dataset/c4_text_document']
+  data_per_class_fraction ......................... 1.0
+  data_sharding ................................... True
+  dataloader_type ................................. single
+  ddp_average_in_collective ....................... False
+  ddp_bucket_size ................................. None
+  decoder_first_pipeline_num_layers ............... None
+  decoder_last_pipeline_num_layers ................ None
+  decoder_num_layers .............................. None
+  decoder_seq_length .............................. None
+  decoupled_lr .................................... None
+  decoupled_min_lr ................................ None
+  decrease_batch_size_if_needed ................... False
+  defer_embedding_wgrad_compute ................... False
+  deprecated_use_mcore_models ..................... False
+  deterministic_mode .............................. False
+  dino_bottleneck_size ............................ 256
+  dino_freeze_last_layer .......................... 1
+  dino_head_hidden_size ........................... 2048
+  dino_local_crops_number ......................... 10
+  dino_local_img_size ............................. 96
+  dino_norm_last_layer ............................ False
+  dino_teacher_temp ............................... 0.07
+  dino_warmup_teacher_temp ........................ 0.04
+  dino_warmup_teacher_temp_epochs ................. 30
+  disable_straggler_on_startup .................... False
+  dist_ckpt_format_deprecated ..................... None
+  dist_ckpt_strictness ............................ assume_ok_unexpected
+  distribute_saved_activations .................... False
+  distributed_backend ............................. nccl
+  distributed_timeout_minutes ..................... 10
+  embedding_path .................................. None
+  empty_unused_memory_level ....................... 0
+  enable_ft_package ............................... False
+  enable_one_logger ............................... True
+  encoder_num_layers .............................. 20
+  encoder_pipeline_model_parallel_size ............ 0
+  encoder_seq_length .............................. 2048
+  encoder_tensor_model_parallel_size .............. 0
+  end_weight_decay ................................ 0.1
+  eod_mask_loss ................................... False
+  eval_interval ................................... 1000
+  eval_iters ...................................... 0
+  evidence_data_path .............................. None
+  exit_duration_in_mins ........................... None
+  exit_interval ................................... None
+  exit_on_missing_checkpoint ...................... False
+  exit_signal_handler ............................. False
+  expert_model_parallel_size ...................... 1
+  ffn_hidden_size ................................. 28672
+  finetune ........................................ False
+  flash_decode .................................... False
+  fp16 ............................................ False
+  fp16_lm_cross_entropy ........................... False
+  fp32_residual_connection ........................ False
+  fp8 ............................................. None
+  fp8_amax_compute_algo ........................... most_recent
+  fp8_amax_history_len ............................ 1
+  fp8_interval .................................... 1
+  fp8_margin ...................................... 0
+  fp8_param_gather ................................ False
+  fp8_wgrad ....................................... True
+  global_batch_size ............................... 1
+  gradient_accumulation_fusion .................... True
+  group_query_attention ........................... False
+  head_lr_mult .................................... 1.0
+  hidden_dropout .................................. 0.1
+  hidden_size ..................................... 8192
+  hybrid_attention_ratio .......................... 0.0
+  hybrid_mlp_ratio ................................ 0.0
+  hybrid_override_pattern ......................... None
+  hysteresis ...................................... 2
+  ict_head_size ................................... None
+  ict_load ........................................ None
+  img_h ........................................... 224
+  img_w ........................................... 224
+  indexer_batch_size .............................. 128
+  indexer_log_interval ............................ 1000
+  inference_batch_times_seqlen_threshold .......... 512
+  init_method_std ................................. 0.006
+  init_method_xavier_uniform ...................... False
+  initial_loss_scale .............................. 4294967296
+  iter_per_epoch .................................. 1250
+  kv_channels ..................................... 128
+  kv_lora_rank .................................... 32
+  lazy_mpu_init ................................... None
+  load ............................................ None
+  local_rank ...................................... 0
+  log_interval .................................... 1
+  log_loss_scale_to_tensorboard ................... True
+  log_memory_to_tensorboard ....................... False
+  log_num_zeros_in_grad ........................... False
+  log_params_norm ................................. False
+  log_progress .................................... False
+  log_straggler ................................... False
+  log_throughput .................................. False
+  log_timers_to_tensorboard ....................... False
+  log_validation_ppl_to_tensorboard ............... False
+  log_world_size_to_tensorboard ................... False
+  logging_level ................................... None
+  loss_scale ...................................... None
+  loss_scale_window ............................... 1000
+  lr .............................................. 6e-05
+  lr_decay_iters .................................. 430000
+  lr_decay_samples ................................ None
+  lr_decay_style .................................. cosine
+  lr_warmup_fraction .............................. 0.0
+  lr_warmup_init .................................. 0.0
+  lr_warmup_iters ................................. 0
+  lr_warmup_samples ............................... 0
+  lr_wsd_decay_iters .............................. None
+  lr_wsd_decay_samples ............................ None
+  lr_wsd_decay_style .............................. exponential
+  make_vocab_size_divisible_by .................... 128
+  manual_gc ....................................... False
+  manual_gc_eval .................................. True
+  manual_gc_interval .............................. 0
+  mask_factor ..................................... 1.0
+  mask_prob ....................................... 0.15
+  mask_type ....................................... random
+  masked_softmax_fusion ........................... True
+  max_position_embeddings ......................... 2048
+  max_tokens_to_oom ............................... 12000
+  merge_file ...................................... /public/home/hkz/repo/hkz/data//merges.txt
+  micro_batch_size ................................ 1
+  microbatch_group_size_per_vp_stage .............. None
+  min_loss_scale .................................. 1.0
+  min_lr .......................................... 6e-06
+  mmap_bin_files .................................. True
+  mock_data ....................................... False
+  moe_aux_loss_coeff .............................. 0.0
+  moe_expert_capacity_factor ...................... None
+  moe_extended_tp ................................. False
+  moe_grouped_gemm ................................ False
+  moe_input_jitter_eps ............................ None
+  moe_layer_recompute ............................. False
+  moe_pad_expert_input_to_capacity ................ False
+  moe_per_layer_logging ........................... False
+  moe_router_load_balancing_type .................. aux_loss
+  moe_router_pre_softmax .......................... False
+  moe_router_topk ................................. 2
+  moe_shared_expert_intermediate_size ............. None
+  moe_shared_expert_overlap ....................... False
+  moe_token_dispatcher_type ....................... allgather
+  moe_token_drop_policy ........................... probs
+  moe_use_upcycling ............................... False
+  moe_z_loss_coeff ................................ None
+  multi_latent_attention .......................... False
+  nccl_communicator_config_path ................... None
+  no_load_optim ................................... None
+  no_load_rng ..................................... None
+  no_persist_layer_norm ........................... False
+  no_save_optim ................................... None
+  no_save_rng ..................................... None
+  non_persistent_ckpt_type ........................ None
+  non_persistent_global_ckpt_dir .................. None
+  non_persistent_local_ckpt_algo .................. fully_parallel
+  non_persistent_local_ckpt_dir ................... None
+  non_persistent_save_interval .................... None
+  norm_epsilon .................................... 1e-05
+  normalization ................................... LayerNorm
+  num_attention_heads ............................. 64
+  num_channels .................................... 3
+  num_classes ..................................... 1000
+  num_dataset_builder_threads ..................... 1
+  num_experts ..................................... None
+  num_layers ...................................... 20
+  num_layers_per_virtual_pipeline_stage ........... None
+  num_query_groups ................................ 8
+  num_workers ..................................... 2
+  one_logger_async ................................ False
+  one_logger_project .............................. megatron-lm
+  one_logger_run_name ............................. None
+  onnx_safe ....................................... None
+  openai_gelu ..................................... False
+  optimizer ....................................... adam
+  output_bert_embeddings .......................... False
+  overlap_grad_reduce ............................. False
+  overlap_p2p_comm ................................ False
+  overlap_p2p_comm_warmup_flush ................... False
+  overlap_param_gather ............................ False
+  overlap_param_gather_with_optimizer_step ........ False
+  override_opt_param_scheduler .................... False
+  params_dtype .................................... torch.bfloat16
+  patch_dim ....................................... 16
+  perform_initialization .......................... True
+  pipeline_model_parallel_size .................... 1
+  pipeline_model_parallel_split_rank .............. None
+  position_embedding_type ......................... learned_absolute
+  pretrained_checkpoint ........................... None
+  profile ......................................... False
+  profile_ranks ................................... [0, 1, 2, 3, 4, 5, 6, 7]
+  profile_step_end ................................ 4
+  profile_step_start .............................. 3
+  q_lora_rank ..................................... None
+  qk_head_dim ..................................... 128
+  qk_layernorm .................................... False
+  qk_pos_emb_head_dim ............................. 64
+  query_in_block_prob ............................. 0.1
+  rampup_batch_size ............................... None
+  rank ............................................ 0
+  recompute_granularity ........................... None
+  recompute_method ................................ None
+  recompute_num_layers ............................ None
+  renormalize_blend_weights ....................... False
+  reset_attention_mask ............................ False
+  reset_position_ids .............................. False
+  retriever_report_topk_accuracies ................ []
+  retriever_score_scaling ......................... False
+  retriever_seq_length ............................ 256
+  retro_add_retriever ............................. False
+  retro_attention_gate ............................ 1
+  retro_cyclic_train_iters ........................ None
+  retro_encoder_attention_dropout ................. 0.1
+  retro_encoder_hidden_dropout .................... 0.1
+  retro_encoder_layers ............................ 2
+  retro_num_neighbors ............................. 2
+  retro_num_retrieved_chunks ...................... 2
+  retro_project_dir ............................... None
+  retro_verify_neighbor_count ..................... True
+  rotary_base ..................................... 10000
+  rotary_interleaved .............................. False
+  rotary_percent .................................. 1.0
+  rotary_scaling_factor ........................... 1.0
+  rotary_seq_len_interpolation_factor ............. None
+  s3_cache_path ................................... None
+  sample_rate ..................................... 1.0
+  save ............................................ None
+  save_interval ................................... 10000
+  scatter_gather_tensors_in_pipeline .............. True
+  seed ............................................ 1234
+  seq_length ...................................... 2048
+  sequence_parallel ............................... True
+  sgd_momentum .................................... 0.9
+  short_seq_prob .................................. 0.1
+  skip_train ...................................... False
+  skipped_train_samples ........................... 0
+  spec ............................................ None
+  split ........................................... 949,50,1
+  squared_relu .................................... False
+  standalone_embedding_stage ...................... False
+  start_weight_decay .............................. 0.1
+  straggler_ctrlr_port ............................ 65535
+  straggler_minmax_count .......................... 1
+  swiglu .......................................... False
+  swin_backbone_type .............................. tiny
+  tensor_model_parallel_size ...................... 8
+  tensorboard_dir ................................. logs/05-06-22-53
+  tensorboard_log_interval ........................ 1
+  tensorboard_queue_size .......................... 1000
+  test_data_path .................................. None
+  test_mode ....................................... False
+  tiktoken_num_special_tokens ..................... 1000
+  tiktoken_pattern ................................ None
+  tiktoken_special_tokens ......................... None
+  timing_log_level ................................ 2
+  timing_log_option ............................... minmax
+  titles_data_path ................................ None
+  tokenizer_model ................................. None
+  tokenizer_type .................................. GPT2BPETokenizer
+  tp_comm_bootstrap_backend ....................... nccl
+  tp_comm_bulk_dgrad .............................. True
+  tp_comm_bulk_wgrad .............................. True
+  tp_comm_overlap ................................. True
+  tp_comm_overlap_ag .............................. True
+  tp_comm_overlap_cfg ............................. None
+  tp_comm_overlap_rs .............................. True
+  tp_comm_overlap_rs_dgrad ........................ False
+  tp_comm_split_ag ................................ True
+  tp_comm_split_rs ................................ True
+  train_data_path ................................. None
+  train_iters ..................................... 5
+  train_samples ................................... None
+  train_sync_interval ............................. None
+  transformer_impl ................................ transformer_engine
+  transformer_pipeline_model_parallel_size ........ 1
+  untie_embeddings_and_output_weights ............. False
+  use_checkpoint_args ............................. False
+  use_checkpoint_opt_param_scheduler .............. False
+  use_cpu_initialization .......................... None
+  use_dist_ckpt ................................... True
+  use_dist_ckpt_deprecated ........................ False
+  use_distributed_optimizer ....................... False
+  use_flash_attn .................................. True
+  use_legacy_models ............................... False
+  use_one_sent_docs ............................... False
+  use_pytorch_profiler ............................ True
+  use_ring_exchange_p2p ........................... False
+  use_rope_scaling ................................ False
+  use_rotary_position_embeddings .................. False
+  use_tp_pp_dp_mapping ............................ False
+  v_head_dim ...................................... 128
+  valid_data_path ................................. None
+  variable_seq_lengths ............................ False
+  virtual_pipeline_model_parallel_size ............ None
+  vision_backbone_type ............................ vit
+  vision_pretraining .............................. False
+  vision_pretraining_type ......................... classify
+  vocab_extra_ids ................................. 0
+  vocab_file ...................................... /public/home/hkz/repo/hkz/data//vocab.json
+  vocab_size ...................................... None
+  wandb_exp_name .................................. 
+  wandb_project ................................... 
+  wandb_save_dir .................................. 
+  weight_decay .................................... 0.1
+  weight_decay_incr_style ......................... constant
+  wgrad_deferral_limit ............................ 0
+  world_size ...................................... 8
+  yaml_cfg ........................................ None
+-------------------- end of arguments ---------------------
+> building GPT2BPETokenizer tokenizer ...
+WARNING: TensorBoard writing requested but is not available (are you using PyTorch 1.1.0 or later?), no TensorBoard logs will be written.
+WARNING: one_logger package is required to enable e2e metrics tracking. please go to https://confluence.nvidia.com/display/MLWFO/Package+Repositories for details to install it
+ > padded vocab (size: 50257) with 943 dummy tokens (new size: 51200)
+> initializing torch distributed ...
+[W506 22:54:54.757438545 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+> initialized tensor model parallel with size 8
+> initialized pipeline model parallel with size 1
+> setting random seeds to 1234 ...
+> compiling dataset index builder ...
+make: Entering directory '/public/home/hkz/repo/hkz/megatron/megatron/core/datasets'
+make: python3-config: No such file or directory
+make: python3-config: No such file or directory
+make: Nothing to be done for 'default'.
+make: Leaving directory '/public/home/hkz/repo/hkz/megatron/megatron/core/datasets'
+>>> done with dataset index builder. Compilation time: 0.035 seconds
+> compiling and loading fused kernels ...
+[W506 22:54:54.063072607 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+[W506 22:54:55.195265922 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+[rank5]:[W506 22:54:55.212792564 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 5]  using GPU 5 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[W506 22:54:55.249484467 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+[W506 22:54:55.279947380 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+[W506 22:54:55.283423171 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+[W506 22:54:55.289021639 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+[rank3]:[W506 22:54:55.299622063 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[W506 22:54:55.305704650 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+[rank1]:[W506 22:54:55.350958302 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank4]:[W506 22:54:55.368350199 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 4]  using GPU 4 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank7]:[W506 22:54:55.377246411 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 7]  using GPU 7 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank2]:[W506 22:54:55.384789956 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank6]:[W506 22:54:55.403093343 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 6]  using GPU 6 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank0]:[W506 22:54:55.416612503 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+>>> done with compiling and loading fused kernels. Compilation time: 17.503 seconds
+!!! [UB] Number of NVLink domains: 1
+!!! [UB] Global ranks on domain 0: [0, 1, 2, 3, 4, 5, 6, 7]
+!!! [UB] Create Userbuffers Communicator
+UB_TIMEOUT is set to 110 sec, 217800000000 cycles, freq: 1980000khz
+MC initialized succesfully, window size = 549755813888
+!!! [UBP2P] Register UBuf 1
+!!! [UBP2P] Register UBuf 2
+!!! [UBP2P] Register UBuf 3
+!!! [UBP2P] Register UBuf 4
+!!! [UB] Register UBuf 5
+!!! [UB] Register UBuf 6
+!!! [UB] Register UBuf 7
+!!! [UB] Register UBuf 8
+!!! [UB] Register UBuf 9
+!!! [UB] Register UBuf 10
+time to initialize megatron (seconds): 58.550
+[after megatron is initialized] datetime: 2025-05-06 22:55:52 
+building GPT model ...
+ > number of parameters on (tensor, pipeline) model parallel rank (6, 0): 2503106560
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 0): 2503106560
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 0): 2503106560 > number of parameters on (tensor, pipeline) model parallel rank (4, 0): 2503106560
+ > number of parameters on (tensor, pipeline) model parallel rank (5, 0): 2503106560
+ > number of parameters on (tensor, pipeline) model parallel rank (7, 0): 2503106560
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 0): 2503106560
+
+Parameter 'embedding.word_embeddings.weight' requires grad: False
+Parameter 'embedding.position_embeddings.weight' requires grad: False
+Parameter 'decoder.layers.0.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.0.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.0.self_attention.linear_qkv.layer_norm_weight' requires grad: True
+Parameter 'decoder.layers.0.self_attention.linear_qkv.layer_norm_bias' requires grad: True
+Parameter 'decoder.layers.0.self_attention.linear_qkv.weight' requires grad: True
+Parameter 'decoder.layers.0.self_attention.linear_qkv.bias' requires grad: True
+Parameter 'decoder.layers.0.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.0.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.0.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.0.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.0.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.0.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.1.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.1.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.1.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.1.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.1.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.1.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.1.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.1.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.1.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.1.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.1.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.1.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.2.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.2.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.2.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.2.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.2.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.2.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.2.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.2.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.2.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.2.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.2.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.2.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.3.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.3.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.3.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.3.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.3.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.3.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.3.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.3.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.3.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.3.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.3.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.3.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.4.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.4.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.4.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.4.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.4.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.4.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.4.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.4.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.4.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.4.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.4.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.4.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.5.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.5.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.5.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.5.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.5.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.5.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.5.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.5.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.5.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.5.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.5.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.5.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.6.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.6.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.6.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.6.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.6.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.6.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.6.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.6.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.6.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.6.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.6.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.6.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.7.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.7.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.7.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.7.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.7.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.7.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.7.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.7.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.7.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.7.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.7.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.7.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.8.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.8.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.8.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.8.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.8.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.8.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.8.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.8.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.8.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.8.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.8.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.8.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.9.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.9.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.9.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.9.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.9.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.9.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.9.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.9.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.9.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.9.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.9.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.9.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.10.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.10.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.10.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.10.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.10.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.10.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.10.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.10.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.10.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.10.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.10.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.10.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.11.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.11.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.11.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.11.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.11.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.11.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.11.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.11.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.11.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.11.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.11.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.11.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.12.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.12.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.12.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.12.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.12.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.12.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.12.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.12.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.12.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.12.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.12.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.12.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.13.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.13.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.13.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.13.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.13.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.13.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.13.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.13.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.13.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.13.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.13.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.13.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.14.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.14.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.14.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.14.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.14.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.14.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.14.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.14.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.14.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.14.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.14.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.14.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.15.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.15.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.15.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.15.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.15.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.15.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.15.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.15.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.15.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.15.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.15.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.15.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.16.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.16.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.16.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.16.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.16.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.16.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.16.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.16.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.16.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.16.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.16.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.16.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.17.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.17.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.17.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.17.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.17.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.17.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.17.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.17.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.17.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.17.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.17.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.17.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.18.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.18.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.18.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.18.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.18.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.18.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.18.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.18.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.18.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.18.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.18.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.18.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.layers.19.self_attention.linear_proj.weight' requires grad: False
+Parameter 'decoder.layers.19.self_attention.linear_proj.bias' requires grad: False
+Parameter 'decoder.layers.19.self_attention.linear_qkv.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.19.self_attention.linear_qkv.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.19.self_attention.linear_qkv.weight' requires grad: False
+Parameter 'decoder.layers.19.self_attention.linear_qkv.bias' requires grad: False
+Parameter 'decoder.layers.19.mlp.linear_fc1.layer_norm_weight' requires grad: False
+Parameter 'decoder.layers.19.mlp.linear_fc1.layer_norm_bias' requires grad: False
+Parameter 'decoder.layers.19.mlp.linear_fc1.weight' requires grad: False
+Parameter 'decoder.layers.19.mlp.linear_fc1.bias' requires grad: False
+Parameter 'decoder.layers.19.mlp.linear_fc2.weight' requires grad: False
+Parameter 'decoder.layers.19.mlp.linear_fc2.bias' requires grad: False
+Parameter 'decoder.final_layernorm.weight' requires grad: False
+Parameter 'decoder.final_layernorm.bias' requires grad: False
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 0): 2503106560
+[after model, optimizer, and learning rate scheduler are built] datetime: 2025-05-06 22:55:54 
+> building train, validation, and test datasets ...
+ > datasets target sizes (minimum size):
+    train:      5
+    validation: 0
+    test:       0
+> building train, validation, and test datasets for GPT ...
+> finished creating GPT datasets ...
+/public/home/hkz/.venv/fthub/lib/python3.10/site-packages/torch/utils/data/dataloader.py:617: UserWarning: This DataLoader will create 2 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+[after dataloaders are built] datetime: 2025-05-06 22:55:57 
+done with setup ...
+(min, max) time across ranks (ms):
+    model-and-optimizer-setup ......................: (1989.82, 2109.67)
+    train/valid/test-data-iterators-setup ..........: (1039.37, 2728.60)
+training ...
+[before the start of training step] datetime: 2025-05-06 22:55:58 
+rank 7 before-forward Memory used 5286.44775390625 MB
+rank 7 after-loss Memory used 6497.82275390625 MB
+[Rank 4] (after 1 iterations) memory (MB) | allocated: 5542.59716796875 | max allocated: 6763.92919921875 | reserved: 6804.0 | max reserved: 6804.0
+[Rank 3] (after 1 iterations) memory (MB) | allocated: 5542.59716796875 | max allocated: 6763.92919921875 | reserved: 6804.0 | max reserved: 6804.0
+Number of parameters in transformer layers in billions:  14.76
+Number of parameters in embedding layers in billions: 0.42
+Total number of parameters in billions: 15.18
+Number of parameters in most loaded shard in billions: 1.8980
+Theoretical memory footprints: weight and optimizer=32581.44 MB
+[Rank 0] (after 1 iterations) memory (MB) | allocated: 5542.59716796875 | max allocated: 6763.92919921875 | reserved: 6804.0 | max reserved: 6804.0
+[Rank 6] (after 1 iterations) memory (MB) | allocated: 5542.59716796875 | max allocated: 6763.92919921875 | reserved: 6804.0 | max reserved: 6804.0
+ [2025-05-06 22:56:56] iteration        1/       5 | consumed samples:            1 | elapsed time per iteration (ms): 57904.8 | learning rate: 6.000000E-05 | global batch size:     1 | lm loss: 1.095033E+01 | loss scale: 1.0 | grad norm: 8.553 | number of skipped iterations:   0 | number of nan iterations:   0 | TPS: 35.368 | TGS: 4.421 |
+[Rank 7] (after 1 iterations) memory (MB) | allocated: 5542.59716796875 | max allocated: 6763.92919921875 | reserved: 6804.0 | max reserved: 6804.0
+[Rank 5] (after 1 iterations) memory (MB) | allocated: 5542.59716796875 | max allocated: 6763.92919921875 | reserved: 6804.0 | max reserved: 6804.0
+[Rank 2] (after 1 iterations) memory (MB) | allocated: 5542.59716796875 | max allocated: 6763.92919921875 | reserved: 6804.0 | max reserved: 6804.0
+[Rank 1] (after 1 iterations) memory (MB) | allocated: 5542.59716796875 | max allocated: 6763.92919921875 | reserved: 6804.0 | max reserved: 6804.0
+(min, max) time across ranks (ms):
+    forward/decoder ................................: (12462.23, 12682.42)
+    forward-backward ...............................: (43038.47, 43101.42)
+    forward-compute ................................: (29324.74, 29590.23)
+    backward-compute ...............................: (11935.09, 12220.26)
+    batch-generator ................................: (13493.68, 13664.73)
+    layernorm-grads-all-reduce .....................: (1.38, 1.55)
+    embedding-grads-all-reduce .....................: (0.02, 0.12)
+    all-grads-sync .................................: (1108.09, 1358.77)
+    optimizer-copy-to-main-grad ....................: (0.03, 0.04)
+    optimizer-clip-main-grad .......................: (14410.48, 14472.40)
+    optimizer-count-zeros ..........................: (0.00, 0.01)
+    optimizer-inner-step ...........................: (2.55, 3.10)
+    optimizer-copy-main-to-model-params ............: (0.06, 0.08)
+    optimizer ......................................: (14662.49, 14725.04)
+rank 7 before-forward Memory used 5542.59765625 MB
+rank 7 after-loss Memory used 6721.97216796875 MB
+ [2025-05-06 22:56:57] iteration        2/       5 | consumed samples:            2 | elapsed time per iteration (ms): 1512.0 | learning rate: 6.000000E-05 | global batch size:     1 | lm loss: 1.066930E+01 | loss scale: 1.0 | grad norm: 8.204 | number of skipped iterations:   0 | number of nan iterations:   0 | TPS: 1354.507 | TGS: 169.313 |
+(min, max) time across ranks (ms):
+    forward/decoder ................................: (329.60, 387.32)
+    forward-backward ...............................: (974.00, 1032.79)
+    forward-compute ................................: (421.87, 574.44)
+    backward-compute ...............................: (251.20, 379.66)
+    batch-generator ................................: (0.26, 7.17)
+    layernorm-grads-all-reduce .....................: (1.04, 1.41)
+    embedding-grads-all-reduce .....................: (0.02, 0.03)
+    all-grads-sync .................................: (0.20, 0.34)
+    optimizer-copy-to-main-grad ....................: (0.02, 0.02)
+    optimizer-clip-main-grad .......................: (0.60, 68.41)
+    optimizer-count-zeros ..........................: (0.00, 0.01)
+    optimizer-inner-step ...........................: (0.18, 0.20)
+    optimizer-copy-main-to-model-params ............: (0.05, 0.07)
+    optimizer ......................................: (278.60, 340.60)
+rank 7 before-forward Memory used 5542.59765625 MB
+rank 7 after-loss Memory used 6721.97216796875 MB
+ [2025-05-06 22:56:59] iteration        3/       5 | consumed samples:            3 | elapsed time per iteration (ms): 1447.6 | learning rate: 6.000000E-05 | global batch size:     1 | lm loss: 1.042598E+01 | loss scale: 1.0 | grad norm: 5.838 | number of skipped iterations:   0 | number of nan iterations:   0 | TPS: 1414.774 | TGS: 176.847 |
+(min, max) time across ranks (ms):
+    forward/decoder ................................: (316.82, 382.17)
+    forward-backward ...............................: (942.13, 973.75)
+    forward-compute ................................: (427.43, 535.22)
+    backward-compute ...............................: (198.56, 386.52)
+    batch-generator ................................: (0.22, 6.98)
+    layernorm-grads-all-reduce .....................: (0.95, 1.14)
+    embedding-grads-all-reduce .....................: (0.01, 0.02)
+    all-grads-sync .................................: (0.21, 0.38)
+    optimizer-copy-to-main-grad ....................: (0.02, 0.02)
+    optimizer-clip-main-grad .......................: (0.41, 81.57)
+    optimizer-count-zeros ..........................: (0.00, 0.01)
+    optimizer-inner-step ...........................: (0.17, 0.19)
+    optimizer-copy-main-to-model-params ............: (0.05, 0.07)
+    optimizer ......................................: (278.61, 351.68)
+rank 7 before-forward Memory used 5542.59765625 MB
+rank 7 after-loss Memory used 6721.97216796875 MB
+ [2025-05-06 22:57:00] iteration        4/       5 | consumed samples:            4 | elapsed time per iteration (ms): 1563.2 | learning rate: 6.000000E-05 | global batch size:     1 | lm loss: 1.030466E+01 | loss scale: 1.0 | grad norm: 5.150 | number of skipped iterations:   0 | number of nan iterations:   0 | TPS: 1310.099 | TGS: 163.762 |
+(min, max) time across ranks (ms):
+    forward/decoder ................................: (290.07, 356.22)
+    forward-backward ...............................: (965.35, 1038.27)
+    forward-compute ................................: (430.67, 558.38)
+    backward-compute ...............................: (217.52, 369.31)
+    batch-generator ................................: (0.22, 6.91)
+    layernorm-grads-all-reduce .....................: (0.90, 1.03)
+    embedding-grads-all-reduce .....................: (0.01, 0.02)
+    all-grads-sync .................................: (0.19, 0.29)
+    optimizer-copy-to-main-grad ....................: (0.02, 0.07)
+    optimizer-clip-main-grad .......................: (0.84, 95.68)
+    optimizer-count-zeros ..........................: (0.00, 0.01)
+    optimizer-inner-step ...........................: (0.17, 0.18)
+    optimizer-copy-main-to-model-params ............: (0.05, 0.10)
+    optimizer ......................................: (272.07, 354.81)
+rank 7 before-forward Memory used 5542.59765625 MB
+rank 7 after-loss Memory used 6721.97216796875 MB
+ [2025-05-06 22:57:02] iteration        5/       5 | consumed samples:            5 | elapsed time per iteration (ms): 1485.5 | learning rate: 6.000000E-05 | global batch size:     1 | lm loss: 1.020151E+01 | loss scale: 1.0 | grad norm: 4.746 | number of skipped iterations:   0 | number of nan iterations:   0 | TPS: 1378.622 | TGS: 172.328 |
+(min, max) time across ranks (ms):
+    forward/decoder ................................: (339.51, 405.72)
+    forward-backward ...............................: (992.44, 1032.19)
+    forward-compute ................................: (457.33, 582.31)
+    backward-compute ...............................: (260.83, 318.81)
+    batch-generator ................................: (0.23, 6.89)
+    layernorm-grads-all-reduce .....................: (0.91, 1.07)
+    embedding-grads-all-reduce .....................: (0.01, 0.03)
+    all-grads-sync .................................: (0.19, 0.28)
+    optimizer-copy-to-main-grad ....................: (0.02, 0.02)
+    optimizer-clip-main-grad .......................: (0.47, 82.64)
+    optimizer-count-zeros ..........................: (0.00, 0.01)
+    optimizer-inner-step ...........................: (0.17, 0.23)
+    optimizer-copy-main-to-model-params ............: (0.06, 0.07)
+    optimizer ......................................: (278.70, 336.68)
+[after training is done] datetime: 2025-05-06 22:57:02 
+[rank5]:[W506 22:57:06.306743191 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+[rank1]:[W506 22:57:06.335711691 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+[rank7]:[W506 22:57:06.342669230 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+[rank3]:[W506 22:57:06.353143197 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+[rank6]:[W506 22:57:06.353407244 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+[rank2]:[W506 22:57:06.340371447 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+[rank4]:[W506 22:57:06.341476392 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+[rank0]:[W506 22:57:06.358095875 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
