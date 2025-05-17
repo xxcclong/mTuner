@@ -1,10 +1,9 @@
 #!/bin/bash
 
 seqs=(1024 2048 4096 8192)
-tps=(1)
+tps=(1 2 4 8)
 bss=(1)
-model_sizes=(7 13)
-# model_sizes=(7 13 30 70)
+model_sizes=(7 13 30 70)
 
 for seq in "${seqs[@]}"; do
     for tp in "${tps[@]}"; do
