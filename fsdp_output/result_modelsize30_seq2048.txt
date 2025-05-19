@@ -1,0 +1,141 @@
+2025-01-12 05:06:17,429 - INFO - {'model': '/public/home/hkz/repo/hkz/data/llama/30b', 'dataset_name': 'MetaMathQA', 'filename': 'MetaMathQA-40K.json', 'is_peft': True, 'validation': False, 'ac': 'none', 'min_param': 1, 'offload_param': False, 'with_data': False, 'shard_group_size': 8, 'dual_model': {'num_layer': -1, 'batch_size': -1, 'peak_ac': True}, 'train': {'batch_size': 'max', 'iter': 3, 'seq_len': 2048, 'epoch': 2, 'grad_accumulation_steps': 4, 'save_interval': -1}, 'intra_weight': {'replica_rate': 0, 'replica_strategy': 'homo'}, 'inter_weight': {'replica_layer_id': -1}, 'time_dim': {'layer_id': -1, 'group_scaler': 1}, 'profile': {'memory': False, 'compute': False}, 'group_size': 1, 'peak_num_groups': 0, 'checkpoint': {'non_offload_num': 0}, 'pipeline': {'use_pipeline': False, 'chunks': 0}, 'tp': False, 'repeated': False, 'lr': 2e-05, 'rank': 0, 'world_size': 8, 'debug': {'skip_comm': False}}
+2025-01-12 05:06:19,749 - INFO - fully shard
+2025-01-12 05:06:19,763 - INFO - fully shard
+2025-01-12 05:06:19,764 - INFO - fully shard
+2025-01-12 05:06:19,765 - INFO - fully shard
+2025-01-12 05:06:19,767 - INFO - fully shard
+2025-01-12 05:06:19,776 - INFO - fully shard
+2025-01-12 05:06:19,776 - INFO - fully shard
+2025-01-12 05:06:19,782 - INFO - fully shard
+2025-01-12 05:06:27,683 - INFO - before training 8183531520
+2025-01-12 05:06:39,267 - INFO - rank 5 peak memory usage 43282893824
+2025-01-12 05:06:39,267 - INFO - rank 2 peak memory usage 43282893824
+2025-01-12 05:06:39,268 - INFO - rank 3 peak memory usage 43282893824
+2025-01-12 05:06:39,269 - INFO - rank 4 peak memory usage 43282893824
+2025-01-12 05:06:39,270 - INFO - rank 0 peak memory usage 43282893824
+2025-01-12 05:06:39,271 - INFO - rank 1 peak memory usage 43282893824
+2025-01-12 05:06:39,271 - INFO - rank 6 peak memory usage 43282893824
+2025-01-12 05:06:39,271 - INFO - rank 7 peak memory usage 43282893824
+2025-01-12 05:06:40,824 - INFO - after-optimizer 8353016832
+2025-01-12 05:06:40,825 - INFO - rank 0 iter 0 fwd 4.264 bwd 1.552 time 5.816 mem 43282893824 TPS 2816.981 TGS 352.123
+2025-01-12 05:06:40,826 - INFO - rank 0 iter 0 num_unshard 1561 num_allgather 1561 allgather_size 64916453888 allgather_time 0
+2025-01-12 05:06:42,574 - INFO - rank 2 peak memory usage 43418807296
+2025-01-12 05:06:42,575 - INFO - rank 6 peak memory usage 43418807296
+2025-01-12 05:06:42,575 - INFO - rank 1 peak memory usage 43418807296
+2025-01-12 05:06:42,575 - INFO - rank 4 peak memory usage 43418807296
+2025-01-12 05:06:42,575 - INFO - rank 3 peak memory usage 43418807296
+2025-01-12 05:06:42,575 - INFO - rank 5 peak memory usage 43418807296
+2025-01-12 05:06:42,576 - INFO - rank 0 peak memory usage 43418807296
+2025-01-12 05:06:42,578 - INFO - rank 7 peak memory usage 43418807296
+2025-01-12 05:06:44,055 - INFO - after-optimizer 8353016832
+2025-01-12 05:06:44,055 - INFO - rank 0 iter 1 fwd 1.752 bwd 1.475 time 3.227 mem 43418807296 TPS 5077.659 TGS 634.707
+2025-01-12 05:06:44,056 - INFO - rank 0 iter 1 num_unshard 1561 num_allgather 1561 allgather_size 64916453888 allgather_time 0
+2025-01-12 05:06:45,792 - INFO - rank 2 peak memory usage 43417758720
+2025-01-12 05:06:45,792 - INFO - rank 6 peak memory usage 43417758720
+2025-01-12 05:06:45,793 - INFO - rank 1 peak memory usage 43417758720
+2025-01-12 05:06:45,793 - INFO - rank 4 peak memory usage 43417758720
+2025-01-12 05:06:45,793 - INFO - rank 5 peak memory usage 43417758720
+2025-01-12 05:06:45,793 - INFO - rank 3 peak memory usage 43417758720
+2025-01-12 05:06:45,796 - INFO - rank 7 peak memory usage 43417758720
+2025-01-12 05:06:45,796 - INFO - rank 0 peak memory usage 43417758720
+2025-01-12 05:06:47,280 - INFO - after-optimizer 8353016832
+2025-01-12 05:06:47,281 - INFO - rank 0 iter 2 fwd 1.740 bwd 1.482 time 3.222 mem 43417758720 TPS 5084.867 TGS 635.608
+2025-01-12 05:06:47,282 - INFO - rank 0 iter 2 num_unshard 1561 num_allgather 1561 allgather_size 64916453888 allgather_time 0
+2025-01-12 05:06:49,286 - INFO - rank 2 peak memory usage 43417630720
+2025-01-12 05:06:49,286 - INFO - rank 6 peak memory usage 43417630720
+2025-01-12 05:06:49,287 - INFO - rank 3 peak memory usage 43417630720
+2025-01-12 05:06:49,287 - INFO - rank 1 peak memory usage 43417630720
+2025-01-12 05:06:49,287 - INFO - rank 5 peak memory usage 43417630720
+2025-01-12 05:06:49,287 - INFO - rank 4 peak memory usage 43417630720
+2025-01-12 05:06:49,289 - INFO - rank 7 peak memory usage 43417630720
+2025-01-12 05:06:49,290 - INFO - rank 0 peak memory usage 43417630720
+2025-01-12 05:06:50,825 - INFO - after-optimizer 8353016832
+2025-01-12 05:06:50,826 - INFO - rank 0 iter 3 fwd 2.009 bwd 1.532 time 3.541 mem 43417630720 TPS 4626.398 TGS 578.300
+2025-01-12 05:06:50,827 - INFO - rank 0 iter 3 num_unshard 1561 num_allgather 1561 allgather_size 64916453888 allgather_time 0
+2025-01-12 05:06:52,586 - INFO - rank 3 peak memory usage 43417630720
+2025-01-12 05:06:52,586 - INFO - rank 2 peak memory usage 43417630720
+2025-01-12 05:06:52,586 - INFO - rank 5 peak memory usage 43417630720
+2025-01-12 05:06:52,586 - INFO - rank 6 peak memory usage 43417630720
+2025-01-12 05:06:52,586 - INFO - rank 1 peak memory usage 43417630720
+2025-01-12 05:06:52,586 - INFO - rank 0 peak memory usage 43417630720
+2025-01-12 05:06:52,586 - INFO - rank 4 peak memory usage 43417630720
+2025-01-12 05:06:52,589 - INFO - rank 7 peak memory usage 43417630720
+2025-01-12 05:06:54,093 - INFO - after-optimizer 8353016832
+2025-01-12 05:06:54,094 - INFO - rank 0 iter 4 fwd 1.763 bwd 1.502 time 3.265 mem 43417630720 TPS 5018.324 TGS 627.290
+2025-01-12 05:06:54,095 - INFO - rank 0 iter 4 num_unshard 1561 num_allgather 1561 allgather_size 64916453888 allgather_time 0
+2025-01-12 05:06:54,095 - INFO - overall_tput 3101.4853698815296 avg_time 5.282630109786988 batch_size 1 seq_len 2048 num_iter 5
+2025-01-12 05:06:54,099 - INFO - activation per sample: 36085163008 base usage 8353016832 gradient usage 51240960
+2025-01-12 05:06:54,099 - INFO - activation per sample: 36085163008 base usage 8353016832 gradient usage 51240960
+2025-01-12 05:06:54,099 - INFO - activation per sample: 36085163008 base usage 8353016832 gradient usage 51240960
+2025-01-12 05:06:54,099 - INFO - activation per sample: 36085163008 base usage 8353016832 gradient usage 51240960
+2025-01-12 05:06:54,099 - INFO - activation per sample: 36085163008 base usage 8353016832 gradient usage 51240960
+2025-01-12 05:06:54,100 - INFO - activation per sample: 36085163008 base usage 8353016832 gradient usage 51240960
+2025-01-12 05:06:54,100 - INFO - activation per sample: 36085163008 base usage 8353016832 gradient usage 51240960
+2025-01-12 05:06:54,140 - INFO - memory_traces/30b_8_1_2048_peft_commed_none_timedim-1_min_param1.txt
+2025-01-12 05:06:54,143 - INFO - activation per sample: 36085163008 base usage 8353016832 gradient usage 51240960
+2025-01-12 05:06:54,144 - INFO - max batch size 1
+2025-01-12 05:06:54,144 - INFO - before training 8353000448
+2025-01-12 05:06:54,623 - INFO - rank 6 peak memory usage 43417630720
+2025-01-12 05:06:54,623 - INFO - rank 0 peak memory usage 43417630720
+2025-01-12 05:06:54,623 - INFO - rank 5 peak memory usage 43417630720
+2025-01-12 05:06:54,623 - INFO - rank 1 peak memory usage 43417630720
+2025-01-12 05:06:54,623 - INFO - rank 2 peak memory usage 43417630720
+2025-01-12 05:06:54,623 - INFO - rank 7 peak memory usage 43417630720
+2025-01-12 05:06:54,623 - INFO - rank 3 peak memory usage 43417630720
+2025-01-12 05:06:54,623 - INFO - rank 4 peak memory usage 43417630720
+2025-01-12 05:06:55,124 - INFO - after-optimizer 8353016832
+2025-01-12 05:06:55,125 - INFO - rank 0 iter 0 fwd 0.480 bwd 0.499 time 0.979 mem 43417630720 TPS 16738.626 TGS 2092.328
+2025-01-12 05:06:55,125 - INFO - rank 0 iter 0 num_unshard 1561 num_allgather 1561 allgather_size 64916453888 allgather_time 0
+2025-01-12 05:06:55,602 - INFO - rank 6 peak memory usage 43417630720
+2025-01-12 05:06:55,602 - INFO - rank 2 peak memory usage 43417630720
+2025-01-12 05:06:55,602 - INFO - rank 3 peak memory usage 43417630720
+2025-01-12 05:06:55,602 - INFO - rank 5 peak memory usage 43417630720
+2025-01-12 05:06:55,602 - INFO - rank 4 peak memory usage 43417630720
+2025-01-12 05:06:55,602 - INFO - rank 7 peak memory usage 43417630720
+2025-01-12 05:06:55,602 - INFO - rank 1 peak memory usage 43417630720
+2025-01-12 05:06:55,602 - INFO - rank 0 peak memory usage 43417630720
+2025-01-12 05:06:56,102 - INFO - after-optimizer 8353016832
+2025-01-12 05:06:56,103 - INFO - rank 0 iter 1 fwd 0.479 bwd 0.497 time 0.976 mem 43417630720 TPS 16789.119 TGS 2098.640
+2025-01-12 05:06:56,104 - INFO - rank 0 iter 1 num_unshard 1561 num_allgather 1561 allgather_size 64916453888 allgather_time 0
+2025-01-12 05:06:56,580 - INFO - rank 3 peak memory usage 43417630720
+2025-01-12 05:06:56,580 - INFO - rank 5 peak memory usage 43417630720
+2025-01-12 05:06:56,580 - INFO - rank 0 peak memory usage 43417630720
+2025-01-12 05:06:56,580 - INFO - rank 1 peak memory usage 43417630720
+2025-01-12 05:06:56,580 - INFO - rank 6 peak memory usage 43417630720
+2025-01-12 05:06:56,580 - INFO - rank 4 peak memory usage 43417630720
+2025-01-12 05:06:56,581 - INFO - rank 2 peak memory usage 43417630720
+2025-01-12 05:06:56,580 - INFO - rank 7 peak memory usage 43417630720
+2025-01-12 05:06:57,080 - INFO - after-optimizer 8353016832
+2025-01-12 05:06:57,081 - INFO - rank 0 iter 2 fwd 0.478 bwd 0.497 time 0.975 mem 43417630720 TPS 16804.445 TGS 2100.556
+2025-01-12 05:06:57,081 - INFO - rank 0 iter 2 num_unshard 1561 num_allgather 1561 allgather_size 64916453888 allgather_time 0
+2025-01-12 05:06:57,562 - INFO - rank 2 peak memory usage 43417630720
+2025-01-12 05:06:57,562 - INFO - rank 6 peak memory usage 43417630720
+2025-01-12 05:06:57,562 - INFO - rank 7 peak memory usage 43417630720
+2025-01-12 05:06:57,562 - INFO - rank 5 peak memory usage 43417630720
+2025-01-12 05:06:57,562 - INFO - rank 0 peak memory usage 43417630720
+2025-01-12 05:06:57,562 - INFO - rank 4 peak memory usage 43417630720
+2025-01-12 05:06:57,562 - INFO - rank 3 peak memory usage 43417630720
+2025-01-12 05:06:57,563 - INFO - rank 1 peak memory usage 43417630720
+2025-01-12 05:06:58,062 - INFO - after-optimizer 8353016832
+2025-01-12 05:06:58,063 - INFO - rank 0 iter 3 fwd 0.483 bwd 0.497 time 0.980 mem 43417630720 TPS 16717.781 TGS 2089.723
+2025-01-12 05:06:58,064 - INFO - rank 0 iter 3 num_unshard 1561 num_allgather 1561 allgather_size 64916453888 allgather_time 0
+2025-01-12 05:06:58,541 - INFO - rank 4 peak memory usage 43417630720
+2025-01-12 05:06:58,541 - INFO - rank 0 peak memory usage 43417630720
+2025-01-12 05:06:58,541 - INFO - rank 3 peak memory usage 43417630720
+2025-01-12 05:06:58,541 - INFO - rank 5 peak memory usage 43417630720
+2025-01-12 05:06:58,541 - INFO - rank 1 peak memory usage 43417630720
+2025-01-12 05:06:58,542 - INFO - rank 7 peak memory usage 43417630720
+2025-01-12 05:06:58,541 - INFO - rank 6 peak memory usage 43417630720
+2025-01-12 05:06:58,542 - INFO - rank 2 peak memory usage 43417630720
+2025-01-12 05:06:59,041 - INFO - after-optimizer 8353016832
+2025-01-12 05:06:59,041 - INFO - rank 0 iter 4 fwd 0.480 bwd 0.497 time 0.976 mem 43417630720 TPS 16785.351 TGS 2098.169
+2025-01-12 05:06:59,042 - INFO - rank 0 iter 4 num_unshard 1561 num_allgather 1561 allgather_size 64916453888 allgather_time 0
+2025-01-12 05:06:59,042 - INFO - overall_tput 16724.01192047584 avg_time 0.9796692371368408 batch_size 1 seq_len 2048 num_iter 5
+2025-01-12 05:06:59,851 - INFO - /public/home/hkz/repo/hkz/FineTuneHub/outputs/2025-01-12/05-06-17/main.log
+2025-01-12 05:06:59,859 - INFO - /public/home/hkz/repo/hkz/FineTuneHub/outputs/2025-01-12/05-06-17/main.log
+2025-01-12 05:06:59,861 - INFO - /public/home/hkz/repo/hkz/FineTuneHub/outputs/2025-01-12/05-06-17/main.log
+2025-01-12 05:06:59,865 - INFO - /public/home/hkz/repo/hkz/FineTuneHub/outputs/2025-01-12/05-06-17/main.log
+2025-01-12 05:06:59,865 - INFO - /public/home/hkz/repo/hkz/FineTuneHub/outputs/2025-01-12/05-06-17/main.log
+2025-01-12 05:06:59,891 - INFO - /public/home/hkz/repo/hkz/FineTuneHub/outputs/2025-01-12/05-06-17/main.log
+2025-01-12 05:06:59,894 - INFO - /public/home/hkz/repo/hkz/FineTuneHub/outputs/2025-01-12/05-06-17/main.log
+2025-01-12 05:06:59,901 - INFO - /public/home/hkz/repo/hkz/FineTuneHub/outputs/2025-01-12/05-06-17/main.log

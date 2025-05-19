@@ -1,0 +1,77 @@
+2025-01-12 05:32:28,588 - INFO - {'model': '/public/home/hkz/repo/hkz/data/llama/30b', 'dataset_name': 'MetaMathQA', 'filename': 'MetaMathQA-40K.json', 'is_peft': True, 'validation': False, 'ac': 'checkpoint', 'min_param': 1, 'offload_param': False, 'with_data': False, 'shard_group_size': 8, 'dual_model': {'num_layer': -1, 'batch_size': -1, 'peak_ac': True}, 'train': {'batch_size': 'max', 'iter': 3, 'seq_len': 8192, 'epoch': 2, 'grad_accumulation_steps': 4, 'save_interval': -1}, 'intra_weight': {'replica_rate': 0, 'replica_strategy': 'homo'}, 'inter_weight': {'replica_layer_id': -1}, 'time_dim': {'layer_id': -1, 'group_scaler': 1}, 'profile': {'memory': False, 'compute': False}, 'group_size': 1, 'peak_num_groups': 0, 'checkpoint': {'non_offload_num': 0}, 'pipeline': {'use_pipeline': False, 'chunks': 0}, 'tp': False, 'repeated': False, 'lr': 2e-05, 'rank': 0, 'world_size': 8, 'debug': {'skip_comm': False}}
+2025-01-12 05:32:30,574 - INFO - fully shard
+2025-01-12 05:32:30,575 - INFO - fully shard
+2025-01-12 05:32:30,575 - INFO - fully shard
+2025-01-12 05:32:30,575 - INFO - fully shard
+2025-01-12 05:32:30,576 - INFO - fully shard
+2025-01-12 05:32:30,576 - INFO - fully shard
+2025-01-12 05:32:30,576 - INFO - fully shard
+2025-01-12 05:32:30,576 - INFO - fully shard
+2025-01-12 05:32:36,836 - INFO - before training 8183531520
+2025-01-12 05:32:47,432 - INFO - rank 5 peak memory usage 17080734720
+2025-01-12 05:32:47,433 - INFO - rank 2 peak memory usage 17080734720
+2025-01-12 05:32:47,433 - INFO - rank 3 peak memory usage 17080734720
+2025-01-12 05:32:47,436 - INFO - rank 4 peak memory usage 17080734720
+2025-01-12 05:32:47,439 - INFO - rank 7 peak memory usage 17080734720
+2025-01-12 05:32:47,439 - INFO - rank 0 peak memory usage 17080734720
+2025-01-12 05:32:47,441 - INFO - rank 1 peak memory usage 17080734720
+2025-01-12 05:32:47,441 - INFO - rank 6 peak memory usage 17080734720
+2025-01-12 05:32:52,466 - INFO - after-optimizer 8353065984
+2025-01-12 05:32:52,467 - INFO - rank 0 iter 0 fwd 4.375 bwd 5.025 time 9.399 mem 17080734720 TPS 6972.485 TGS 871.561
+2025-01-12 05:32:52,468 - INFO - rank 0 iter 0 num_unshard 2281 num_allgather 2281 allgather_size 89965111808 allgather_time 0
+2025-01-12 05:32:54,501 - INFO - rank 6 peak memory usage 17216648192
+2025-01-12 05:32:54,501 - INFO - rank 3 peak memory usage 17216648192
+2025-01-12 05:32:54,501 - INFO - rank 1 peak memory usage 17216648192
+2025-01-12 05:32:54,501 - INFO - rank 5 peak memory usage 17216648192
+2025-01-12 05:32:54,502 - INFO - rank 4 peak memory usage 17216648192
+2025-01-12 05:32:54,503 - INFO - rank 2 peak memory usage 17216648192
+2025-01-12 05:32:54,503 - INFO - rank 7 peak memory usage 17216648192
+2025-01-12 05:32:54,504 - INFO - rank 0 peak memory usage 17216648192
+2025-01-12 05:32:57,750 - INFO - after-optimizer 8353065984
+2025-01-12 05:32:57,751 - INFO - rank 0 iter 1 fwd 2.045 bwd 3.236 time 5.281 mem 17216648192 TPS 12410.359 TGS 1551.295
+2025-01-12 05:32:57,752 - INFO - rank 0 iter 1 num_unshard 2281 num_allgather 2281 allgather_size 89965111808 allgather_time 0
+2025-01-12 05:32:59,617 - INFO - rank 5 peak memory usage 17216648192
+2025-01-12 05:32:59,617 - INFO - rank 2 peak memory usage 17216648192
+2025-01-12 05:32:59,617 - INFO - rank 6 peak memory usage 17216648192
+2025-01-12 05:32:59,618 - INFO - rank 4 peak memory usage 17216648192
+2025-01-12 05:32:59,618 - INFO - rank 7 peak memory usage 17216648192
+2025-01-12 05:32:59,618 - INFO - rank 1 peak memory usage 17216648192
+2025-01-12 05:32:59,618 - INFO - rank 3 peak memory usage 17216648192
+2025-01-12 05:32:59,620 - INFO - rank 0 peak memory usage 17216648192
+2025-01-12 05:33:02,835 - INFO - after-optimizer 8353065984
+2025-01-12 05:33:02,835 - INFO - rank 0 iter 2 fwd 1.877 bwd 3.204 time 5.081 mem 17216648192 TPS 12898.831 TGS 1612.354
+2025-01-12 05:33:02,836 - INFO - rank 0 iter 2 num_unshard 2281 num_allgather 2281 allgather_size 89965111808 allgather_time 0
+2025-01-12 05:33:04,894 - INFO - rank 7 peak memory usage 17216648192
+2025-01-12 05:33:04,894 - INFO - rank 5 peak memory usage 17216648192
+2025-01-12 05:33:04,894 - INFO - rank 3 peak memory usage 17216648192
+2025-01-12 05:33:04,894 - INFO - rank 4 peak memory usage 17216648192
+2025-01-12 05:33:04,894 - INFO - rank 6 peak memory usage 17216648192
+2025-01-12 05:33:04,894 - INFO - rank 2 peak memory usage 17216648192
+2025-01-12 05:33:04,895 - INFO - rank 1 peak memory usage 17216648192
+2025-01-12 05:33:04,897 - INFO - rank 0 peak memory usage 17216648192
+2025-01-12 05:33:08,104 - INFO - after-optimizer 8353065984
+2025-01-12 05:33:08,104 - INFO - rank 0 iter 3 fwd 2.070 bwd 3.196 time 5.266 mem 17216648192 TPS 12445.389 TGS 1555.674
+2025-01-12 05:33:08,105 - INFO - rank 0 iter 3 num_unshard 2281 num_allgather 2281 allgather_size 89965111808 allgather_time 0
+2025-01-12 05:33:10,010 - INFO - rank 5 peak memory usage 17216648192
+2025-01-12 05:33:10,010 - INFO - rank 3 peak memory usage 17216648192
+2025-01-12 05:33:10,010 - INFO - rank 6 peak memory usage 17216648192
+2025-01-12 05:33:10,011 - INFO - rank 2 peak memory usage 17216648192
+2025-01-12 05:33:10,010 - INFO - rank 1 peak memory usage 17216648192
+2025-01-12 05:33:10,011 - INFO - rank 7 peak memory usage 17216648192
+2025-01-12 05:33:10,011 - INFO - rank 4 peak memory usage 17216648192
+2025-01-12 05:33:10,013 - INFO - rank 0 peak memory usage 17216648192
+2025-01-12 05:33:13,282 - INFO - after-optimizer 8353065984
+2025-01-12 05:33:13,283 - INFO - rank 0 iter 4 fwd 1.917 bwd 3.259 time 5.175 mem 17216648192 TPS 12663.216 TGS 1582.902
+2025-01-12 05:33:13,284 - INFO - rank 0 iter 4 num_unshard 2281 num_allgather 2281 allgather_size 89965111808 allgather_time 0
+2025-01-12 05:33:13,284 - INFO - overall_tput 8990.333007505415 avg_time 7.2896076202392575 batch_size 1 seq_len 8192 num_iter 5
+2025-01-12 05:33:13,291 - INFO - activation per sample: 9802955264 base usage 8353065984 gradient usage 51240960
+2025-01-12 05:33:13,291 - INFO - activation per sample: 9802955264 base usage 8353065984 gradient usage 51240960
+2025-01-12 05:33:13,291 - INFO - activation per sample: 9802955264 base usage 8353065984 gradient usage 51240960
+2025-01-12 05:33:13,291 - INFO - activation per sample: 9802955264 base usage 8353065984 gradient usage 51240960
+2025-01-12 05:33:13,292 - INFO - activation per sample: 9802955264 base usage 8353065984 gradient usage 51240960
+2025-01-12 05:33:13,292 - INFO - activation per sample: 9802955264 base usage 8353065984 gradient usage 51240960
+2025-01-12 05:33:13,292 - INFO - activation per sample: 9802955264 base usage 8353065984 gradient usage 51240960
+2025-01-12 05:33:13,350 - INFO - memory_traces/30b_8_1_8192_peft_commed_checkpoint_timedim-1_min_param1.txt
+2025-01-12 05:33:13,356 - INFO - activation per sample: 9802955264 base usage 8353065984 gradient usage 51240960
+2025-01-12 05:33:13,356 - INFO - max batch size 7
+2025-01-12 05:33:13,357 - INFO - before training 8353000448
