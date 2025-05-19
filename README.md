@@ -23,7 +23,10 @@ Step 1: Run and collect all the results
 bash scripts/run_megatron.sh # results saved to megatron_output
 bash scripts/run_flux.sh # results saved to flux_output
 bash scripts/run_mtuner.sh # results saved to mtuner_output
-
+# run FSDP or DeepSpeed
+cd mTuner-FSDP
+bash run_fsdp.sh
+bash run_ds.sh
 ```
 
 Step 2: plot the figure using `plot_figure8.ipynb`
